@@ -16,29 +16,48 @@
 <body>
 
   <!-- Header -->
-  <header id="header">
+   <div class="header-wrapper">
+  <header id="header" class="topbar">
+    <div class="topbar-inner">
 <div class="logo">
       <!-- Replace with your actual logo image -->
-      <img src="logo.png" alt="Chip Creations" class="logo-img">
-      <!-- Alternatively, use text logo -->
-      <!-- <h2>Chip Creations</h2> -->
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
+      <img src="logo.png" alt="Chip Creations"  >
 
-        <li><a href="#services">Services</a></li>
-        <li><a href="#port">Portfolio</a></li>
-           <li><a href="#client">Clients</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <!-- <a href="#" class="call-btn"><i class="fas fa-phone"></i> <span>Call Us</span></a> -->
-    <div class="menu-toggle">
+
+    </div>
+
+<div class="menu-toggle">
       <i class="fas fa-bars"></i>
     </div>
-  </header>
 
+    <div class="contact">
+<div class="phone" aria-label="Phone number">
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M21 16.5v3a2 2 0 0 1-2.18 2c-9.94-1.05-14.77-5.88-15.82-15.82A2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.11.86.29 1.7.54 2.49a2 2 0 0 1-.45 2.11l-1.27 1.27a14.9 14.9 0 0 0 6.39 6.39l1.27-1.27a2 2 0 0 1 2.11-.45c.79.25 1.63.43 2.49.54A2 2 0 0 1 21 16.5Z" fill="currentColor"/>
+</svg>
+<span>+91-9600290814</span>
+</div>
+<button class="ctaa">Request a Free Quote</button>
+</div>
+</div>
+
+  </header>
+<div class="navwrap">
+    <div class="container">
+      <nav>
+        <ul class="menu" id="mainMenu">
+          <li><a  href="#home">Home</a></li>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#port">Portfolio</a></li>
+          <li><a href="#client">Our Clients</a></li>
+
+          <li><a href="#contact">Contact</a></li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
   <!-- Mobile Navigation -->
   <div class="mobile-nav" id="mobileNav">
     <div class="close-menu" id="closeMenu">
@@ -49,7 +68,7 @@
 
       <li><a href="#services">Services</a></li>
       <li><a href="#port">Portfolio</a></li>
-<li><a href="#client">Clients</a></li>
+<li><a href="#clients">Clients</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -94,15 +113,15 @@
   <p class="service-desc">High-quality videos to showcase your brand, products, or services for maximum engagement.</p>
 </div>
 
-<div class="service-card">
+<!-- <div class="service-card">
   <i class="fas fa-envelope-open-text service-icon"></i>
   <h3 class="service-title">Email Marketing</h3>
   <p class="service-desc">Reach your customers directly with personalized and automated email campaigns that convert.</p>
-</div>
+</div> -->
 
 <div class="service-card">
   <i class="fas fa-bullseye service-icon"></i>
-  <h3 class="service-title">Brand Strategy</h3>
+  <h3 class="service-title">Branding</h3>
   <p class="service-desc">Develop a clear brand identity and strategy that positions your business for growth.</p>
 </div>
       <div class="service-card">
@@ -124,15 +143,15 @@
 
 <div class="service-card">
   <i class="fas fa-palette service-icon"></i>
-  <h3 class="service-title">UI/UX Design</h3>
+  <h3 class="service-title">Creative Design</h3>
   <p class="service-desc">We craft intuitive and engaging designs that create a seamless user experience for your audience.</p>
 </div>
 
-<div class="service-card">
+<!-- <div class="service-card">
   <i class="fas fa-bullhorn service-icon"></i>
   <h3 class="service-title">Social Media Marketing</h3>
   <p class="service-desc">Grow your brand presence on social platforms and connect with your audience effectively.</p>
-</div>
+</div> -->
 
 
 
@@ -343,27 +362,35 @@
 
     // Mobile menu functionality
     const menuToggle = document.querySelector('.menu-toggle');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileNav = document.getElementById('mobileNav');
-    const overlay = document.getElementById('overlay');
+const closeMenu = document.getElementById('closeMenu');
+const mobileNav = document.getElementById('mobileNav');
+const overlay = document.getElementById('overlay');
+const mobileMenuItems = document.querySelectorAll('.mobile-nav a');
 
-    menuToggle.addEventListener('click', function() {
-      mobileNav.classList.add('active');
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
+// Function to close the mobile menu
+function closeMobileMenu() {
+    mobileNav.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 
-    closeMenu.addEventListener('click', function() {
-      mobileNav.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
+// Toggle menu when hamburger icon is clicked
+menuToggle.addEventListener('click', function() {
+    mobileNav.classList.add('active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
 
-    overlay.addEventListener('click', function() {
-      mobileNav.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
+// Close menu when close button is clicked
+closeMenu.addEventListener('click', closeMobileMenu);
+
+// Close menu when overlay is clicked
+overlay.addEventListener('click', closeMobileMenu);
+
+// Close menu when any mobile menu item is clicked
+mobileMenuItems.forEach(item => {
+    item.addEventListener('click', closeMobileMenu);
+});
 
     // Counter animation for stats
     function animateCounters() {
